@@ -1,0 +1,213 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Installing HomeBrew on Mac &#8212; COSC1315 fall2018 documentation</title>
+    <link rel="stylesheet" href="../../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Glossary" href="../../glossary.html" />
+    <link rel="prev" title="Programmer’s Editor" href="03-installing-gvim.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../glossary.html" title="Glossary"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="03-installing-gvim.html" title="Programmer’s Editor"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">COSC1315 fall2018 documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Appendix</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="installing-homebrew-on-mac">
+<span id="installing-homebrew"></span><h1>Installing HomeBrew on Mac<a class="headerlink" href="#installing-homebrew-on-mac" title="Permalink to this headline">¶</a></h1>
+<p>One of the best tools for installing software on a Mac is the <a class="reference external" href="https://brew.sh/">HomeBrew</a> system.
+<a class="reference external" href="https://brew.sh/">HomeBrew</a> is a <a class="reference external" href="https://www.ruby-lang.org/en/">Ruby</a> based program that uses a “formula” to define how to
+download and install a large number of popular programs. <a class="reference external" href="https://brew.sh/">HomeBrew</a> will manage
+compiling many of these packages from source code, making sure that everything
+on your system is up to date and works well.</p>
+<div class="section" id="installing">
+<h2>Installing<a class="headerlink" href="#installing" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://brew.sh/">HomeBrew</a> is a <a class="reference external" href="https://www.ruby-lang.org/en/">Ruby</a> program, so we need a recent version of <a class="reference external" href="https://www.ruby-lang.org/en/">Ruby</a> on the Mac.
+Fortunately, the default installation of Mac OS-X has <a class="reference external" href="https://www.ruby-lang.org/en/">Ruby</a> installed:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span><span class="hll">ruby --verison
+</span>ruby 1.8.7 (2012-02-08 patchlevel 358) [universal-darwin12.0]
+</pre></div>
+</div>
+<p>This command will install <a class="reference external" href="https://brew.sh/">HomeBrew</a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+</pre></div>
+</div>
+</div>
+<div class="section" id="setting-the-system-path">
+<h2>Setting the system path<a class="headerlink" href="#setting-the-system-path" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://brew.sh/">HomeBrew</a> installed packages as a normal user (it does not need <code class="docutils literal notranslate"><span class="pre">sudo</span></code> for
+most commands). All packages are installed under <code class="docutils literal notranslate"><span class="pre">/usr/local/Cellar</span></code> (where
+else would you keep your “brew”?), then linked into <code class="docutils literal notranslate"><span class="pre">/usr/local/bin</span></code>. We
+need to make sure the packages installed by <a class="reference external" href="https://brew.sh/">HomeBrew</a> are chosen before any
+default versions installed on your system. To make this happen we need to add a
+line to your <code class="docutils literal notranslate"><span class="pre">.bash_profile</span></code> file in your home directory.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This file is not present by default on the Mac. Just create it with a text
+editor.</p>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>export PATH=&quot;/usr/local/bin:$PATH&quot;
+</pre></div>
+</div>
+</div>
+<div class="section" id="updating-the-system">
+<h2>Updating the system<a class="headerlink" href="#updating-the-system" title="Permalink to this headline">¶</a></h2>
+<p>With <a class="reference external" href="https://brew.sh/">HomeBrew</a> installed, you will need to update your system so the tool can
+find the most current packages. This should be done periodically, especially
+before installing a new package:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>brew update
+</pre></div>
+</div>
+</div>
+<div class="section" id="checking-the-installation">
+<h2>Checking the installation<a class="headerlink" href="#checking-the-installation" title="Permalink to this headline">¶</a></h2>
+<p>Another good thing to do periodically is to make sure <a class="reference external" href="https://brew.sh/">HomeBrew</a> is happy with
+the setup on your system. Run this:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>brew doctor
+</pre></div>
+</div>
+<p>If any issues are reported, it is a good idea to resolve them right away. Most
+issues can be figured out with a bit of “Googling”</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../../index.html" title="index">
+          <img class="logo" src="../../_static/ACClogo.png" alt="Logo"/>
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Installing HomeBrew on Mac</a><ul>
+<li><a class="reference internal" href="#installing">Installing</a></li>
+<li><a class="reference internal" href="#setting-the-system-path">Setting the system path</a></li>
+<li><a class="reference internal" href="#updating-the-system">Updating the system</a></li>
+<li><a class="reference internal" href="#checking-the-installation">Checking the installation</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="03-installing-gvim.html"
+                          title="Previous page">&larr; Programmer’s Editor</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="../../glossary.html"
+                          title="Next page">&rarr; Glossary</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/appendix/tools/04-installing-homebrew.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../glossary.html" title="Glossary"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="03-installing-gvim.html" title="Programmer’s Editor"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">COSC1315 fall2018 documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Appendix</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Roie R. Black.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.1.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>
